@@ -3,7 +3,12 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/payment
-    username: nozerry
+    url: jdbc:postgresql://localhost:5432/product
+    username: nozeryy
     password: nozeryy
     driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

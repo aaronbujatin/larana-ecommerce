@@ -1,8 +1,9 @@
 services:
   postgres:
     container_name: postgres
+    image: postgres
     environment:
-      POSTGRES_USERNAME: nozeryy
+      POSTGRES_USER: nozeryy
       POSTGRES_PASSWORD: nozeryy
       PG_DATA: /var/lib/postgresql/data
     volumes:
