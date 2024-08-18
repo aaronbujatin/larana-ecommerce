@@ -17,7 +17,9 @@ public class ProductSize {
     @GeneratedValue
     private Long id;
     private int stock;
+    private String size;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     private Product product;
+
 }

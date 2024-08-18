@@ -8,7 +8,7 @@ public record ProductRequest(
         String name,
         String description,
         BigDecimal price,
-        List<ProductSize> productSize,
+        List<ProductSizeRequest> productSizeRequests,
         String imageUrl
 ) {
 }
