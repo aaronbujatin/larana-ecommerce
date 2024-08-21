@@ -1,5 +1,6 @@
 package com.nozeryy.customerservice.customer;
 
+import com.nozeryy.customerservice.exception.CustomerNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class CustomerService {
     }
 
     public CustomerResponse getCustomerById(String customerId) {
-        return customerRepository.findById(customerId);
+        return customerRepository.findById(customerId)
+                .map(customerMapper::toCustomerResponse)
+                .orElseThrow(() -> new CustomerNotFoundException("Customer not found with id " + customerId));
     }
 }
