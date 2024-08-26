@@ -7,8 +7,11 @@ public record ProductResponse(
         Long id,
         String name,
         String description,
+        String brand,
+        String category,
         BigDecimal price,
-        List<ProductSizeResponse> productSizeResponses,
-        String imageUrl
+        List<String> details,
+        List<ProductSizeResponse> productSizes,
+        List<String> imageUrl
 ) {
 }

@@ -7,8 +7,11 @@ public record ProductRequest(
         Long id,
         String name,
         String description,
+        String brand,
+        String category,
         BigDecimal price,
-        List<ProductSizeRequest> productSizeRequests,
-        String imageUrl
+        List<String> details,
+        List<ProductSize> productSizes,
+        List<String> imageUrl
 ) {
 }

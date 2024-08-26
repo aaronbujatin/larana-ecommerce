@@ -20,10 +20,12 @@ public class Product {
     private Long id;
     private String name;
     private String description;
+    private String brand;
+    private String category;
     private BigDecimal price;
+    private List<String> details;
     @OneToMany(mappedBy = "product",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductSize> productSizes = new ArrayList<>();
-    private String imageUrl;
-
+    private List<String> imageUrl;
 
 }

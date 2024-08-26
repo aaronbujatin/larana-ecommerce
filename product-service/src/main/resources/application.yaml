@@ -1,5 +1,13 @@
 spring:
   application:
     name: product-service
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: create
+        jdbc:
+          lob:
+            non_contextual_create: true
   config:
     import: optional:configserver:http://localhost:8088

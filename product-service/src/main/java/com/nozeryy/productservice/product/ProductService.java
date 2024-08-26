@@ -17,8 +17,23 @@ public class ProductService {
         return productMapper.toProductResponse(product);
     }
 
+    public List<ProductResponse> findAllByCategory(String category){
+        return productRepository.findByCategory(category)
+                .stream()
+                .map(productMapper::toProductResponse)
+                .toList();
+    }
+
     public List<ProductResponse> findAllProducts() {
         return productRepository.findAll()
+                .stream()
+                .map(productMapper::toProductResponse)
+                .toList();
+    }
+
+    public List<ProductResponse> findTop4ByCategoryAndIdNot(Long id){
+        var product = productRepository.findById(id).orElseThrow();
+        return productRepository.findTop4ByCategoryAndIdNot(product.getCategory(), product.getId())
                 .stream()
                 .map(productMapper::toProductResponse)
                 .toList();

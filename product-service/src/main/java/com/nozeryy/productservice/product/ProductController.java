@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
+@CrossOrigin("http://localhost:4200")
 public class ProductController {
     private final  ProductService productService;
 
@@ -22,6 +23,17 @@ public class ProductController {
     public ResponseEntity<List<ProductResponse>> getAllProducts(){
         return ResponseEntity.ok(productService.findAllProducts());
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<ProductResponse>> getAllProductsByCategory(@RequestParam String category){
+        return ResponseEntity.ok(productService.findAllByCategory(category));
+    }
+
+    @GetMapping("/recommendations/{product-id}")
+    public ResponseEntity<List<ProductResponse>> getProductRecommendations(@PathVariable(name = "product-id") Long productId){
+        return ResponseEntity.ok(productService.findTop4ByCategoryAndIdNot(productId));
+    }
+
 
     @GetMapping("/{product-id}")
     public ResponseEntity<ProductResponse> getProductById(@PathVariable(name = "product-id") Long id){
