@@ -24,7 +24,7 @@
                     <h6 class="font-bold uppercase text-[#1a1a1a] text-sm mb-2">Sizes</h6>
                     <div class="">
 
-                        <button *ngFor="let productSize of product.productSizes" [disabled]="productSize.stock===0"
+                        <button *ngFor="let productSize of product.productSizes" [disabled]="productSize.stock===0" (click)="selectedSize(product.id, productSize.size)"
                             class="text-[#1a1a1a] bg-white border border-[#1a1a1a] mr-2 mb-2 focus:bg-[#1a1a1a] focus:text-white focus:outline-none focus:ring-0 font-medium rounded-md text-sm px-7 py-2.5 disabled:line-through disabled:decoration-2">
                             US {{productSize.size}}
                         </button>
@@ -32,7 +32,7 @@
                     </div>
 
                 </div>
-                <button
+                <button (click)="addToCartItem(product)"
                     class="text-white bg-[#1a1a1a] border focus:outline-none focus:ring-0 font-medium rounded-md text-sm px-7 py-2.5 uppercase">
                     Add to cart
                 </button>
@@ -57,7 +57,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-4 gap-2" >
                     <div class="w-full max-w-sm" *ngFor="let productRecommendation of productRecommendations">
                         <div class=" bg-[#F2F2F2] border border-gray-200 shadow">
-                            <a href="#">
+                            <a  [routerLink]="['/products', productRecommendation.id]">
                                 <img class="p-8 mix-blend-darken" src="{{productRecommendation.imageUrl[0]}}" alt="product image" />
                             </a>
 
@@ -71,7 +71,6 @@
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </section>

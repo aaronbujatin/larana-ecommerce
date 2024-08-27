@@ -26,7 +26,8 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/lightbox2/dist/css/lightbox.min.css"
+              "node_modules/lightbox2/dist/css/lightbox.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/lightbox2/dist/js/lightbox-plus-jquery.js",

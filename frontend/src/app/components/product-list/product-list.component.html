@@ -1,0 +1,21 @@
+<div class="text-center container px-5 py-24 mx-auto">
+    <h1 class="my-5 text-base font-semibold font-['Quantico'] uppercase text-[#1a1a1a]">{{categoryHeader}}</h1>
+    <div class="">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
+            <div class="w-full max-w-sm" *ngFor="let product of products">
+                <div class=" bg-[#F2F2F2] border border-gray-200 shadow">
+                    <a [routerLink]="['/products', product.id]">
+                        <img class="p-8 mix-blend-darken" src="{{product.imageUrl[0]}}" alt="product image" />
+                    </a>
+
+                </div>
+                <div class="pb-5 text-center flex">
+                    <h6 class="text-[12px] font-semibold text-[#1a1a1a] mr-2">{{product.name}}
+                    </h6>
+                    <h6 class="text-[12px] text-gray-500">{{product.price | currency : 'Php'}}</h6>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

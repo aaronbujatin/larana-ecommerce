@@ -1,0 +1,4 @@
+::ng-deep .toast-success {
+    background-color: #0C0C0F !important;
+    font-family: 'Karla';
+  }
