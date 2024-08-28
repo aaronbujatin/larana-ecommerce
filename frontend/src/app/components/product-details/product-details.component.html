@@ -24,7 +24,8 @@
                     <h6 class="font-bold uppercase text-[#1a1a1a] text-sm mb-2">Sizes</h6>
                     <div class="">
 
-                        <button *ngFor="let productSize of product.productSizes" [disabled]="productSize.stock===0" (click)="selectedSize(product.id, productSize.size)"
+                        <button *ngFor="let productSize of product.productSizes" [disabled]="productSize.stock===0"
+                            (click)="selectSize(productSize.size)"
                             class="text-[#1a1a1a] bg-white border border-[#1a1a1a] mr-2 mb-2 focus:bg-[#1a1a1a] focus:text-white focus:outline-none focus:ring-0 font-medium rounded-md text-sm px-7 py-2.5 disabled:line-through disabled:decoration-2">
                             US {{productSize.size}}
                         </button>
@@ -33,7 +34,7 @@
 
                 </div>
                 <button (click)="addToCartItem(product)"
-                    class="text-white bg-[#1a1a1a] border focus:outline-none focus:ring-0 font-medium rounded-md text-sm px-7 py-2.5 uppercase">
+                    class="text-white bg-[#0C0C0F] border focus:outline-none focus:ring-0 font-medium rounded-md text-sm px-7 py-2.5 uppercase">
                     Add to cart
                 </button>
                 <div class="my-5">
@@ -53,19 +54,21 @@
 
         <div class="text-center">
             <h1 class="my-5 text-base font-semibold font-['Quantico'] uppercase text-[#1a1a1a]">You may also like</h1>
-            <div class="" >
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-2" >
+            <div class="">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-2">
                     <div class="w-full max-w-sm" *ngFor="let productRecommendation of productRecommendations">
                         <div class=" bg-[#F2F2F2] border border-gray-200 shadow">
-                            <a  [routerLink]="['/products', productRecommendation.id]">
-                                <img class="p-8 mix-blend-darken" src="{{productRecommendation.imageUrl[0]}}" alt="product image" />
+                            <a [routerLink]="['/products', productRecommendation.id]">
+                                <img class="p-8 mix-blend-darken" src="{{productRecommendation.imageUrl[0]}}"
+                                    alt="product image" />
                             </a>
 
                         </div>
                         <div class="pb-5 text-center flex">
                             <h6 class="text-[12px] font-semibold text-[#1a1a1a] mr-2">{{productRecommendation.name}}
                             </h6>
-                            <h6 class="text-[12px] text-gray-500">{{productRecommendation.price | currency : 'Php'}}</h6>
+                            <h6 class="text-[12px] text-gray-500">{{productRecommendation.price | currency : 'Php'}}
+                            </h6>
 
                         </div>
                     </div>

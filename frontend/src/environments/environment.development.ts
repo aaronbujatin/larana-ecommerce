@@ -1,3 +1,9 @@
 export const environment = {
-    API_GATEWAY : "http://localhost:8222"
+    production: false,
+    API_GATEWAY: "http://localhost:8222",
+    keycloak: {
+        realm: 'larana',
+        clientId: 'larana-client',
+        url: 'http://localhost:8080'
+    }
 };

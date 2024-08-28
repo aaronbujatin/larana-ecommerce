@@ -35,7 +35,6 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProductById(id).subscribe(
       (response: any) => {
         this.product = response
-        console.log(this.product);
       }
     )
   }
@@ -46,7 +45,6 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getProductsRecommendations(id).subscribe(
       (response: any) => {
         this.productRecommendations = response
-        console.log(this.productRecommendations);
       }
     )
   }
@@ -54,16 +52,23 @@ export class ProductDetailsComponent implements OnInit {
   size: string = "";
   quantity: number = 1;
   productId: number = 0;
-  selectedSize(productId: number, size: string) {
-    this.size = size;
-    this.productId = productId
-    console.log(this.size, this.productId);
+  // selectedSize(productId: number, size: string) {
+  //   this.size = size;
+  //   this.productId = productId
+  // }
+
+  selectedSize: string = "";
+
+  selectSize(size: string) {
+    this.selectedSize = size;
+    console.log(this.selectedSize);
 
   }
 
   addToCartItem(product: Product) {
-    if (this.productId !== 0 && this.size !== "") {
-      this.cartService.addToCart(product, this.quantity, this.size);
+    if (product.id !== 0 && this.selectedSize !== "") {
+      console.log(product.id, this.size);
+      this.cartService.addToCart(product, this.quantity, this.selectedSize);
       this.showSuccessAddToCart()
       this.resetSelectedSize()
       this.reloadCurrentRoute()
@@ -74,10 +79,10 @@ export class ProductDetailsComponent implements OnInit {
 
   reloadCurrentRoute() {
     let currentUrl = this.router.url;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
     });
-}
+  }
 
   resetSelectedSize() {
     this.productId = 0;
