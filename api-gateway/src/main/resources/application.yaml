@@ -1,5 +1,16 @@
 spring:
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          issuer-uri: "http:localhost:8080/realms/larana"
   application:
     name: api-gateway
   config:
     import: optional:configserver:http://localhost:8088
+#jwt:
+#  auth:
+#    converter:
+#      resource-id: larana-client
+#      principle-attribute: preferred_username
+
