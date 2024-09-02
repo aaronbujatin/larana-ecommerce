@@ -1,25 +1,22 @@
-import { APP_INITIALIZER, ApplicationConfig } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { KeycloakService, KeycloakBearerInterceptor } from 'keycloak-angular';
-import { initializeKeycloak } from './services/keycloak-init-factory';
+import { authInterceptor } from './services/interceptor/auth-interceptor';
+import { provideAuth } from 'angular-auth-oidc-client';
+import { authConfig } from './components/config/auth-config';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient(), provideToastr(), provideAnimations(), {
-    provide: APP_INITIALIZER,
-    useFactory: initializeKeycloak,
-    multi: true,
-    deps: [KeycloakService]
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: KeycloakBearerInterceptor,
-    multi: true
-  },
-    KeycloakService,
-  provideHttpClient(withInterceptorsFromDi())]
+  providers: [provideRouter(routes),
+  provideZoneChangeDetection({ eventCoalescing: true }),
+  provideHttpClient(withInterceptors([authInterceptor])),
+  provideToastr(),
+  provideAnimations(),
+  provideAuth(authConfig),
+
+  ]
 };
